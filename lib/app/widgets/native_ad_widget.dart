@@ -57,7 +57,7 @@ class _NativeAdWidgetState extends State<NativeAdWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: widget.isSmall ? 140 : 380,
+      height: !_loading && _native == null? 180 : widget.isSmall ? 140 : 380,
       margin: EdgeInsets.fromLTRB(S.lg, S.xl, S.lg, S.md),
       child: (_loading)
           ? Padding(

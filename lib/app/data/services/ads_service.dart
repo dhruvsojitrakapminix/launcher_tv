@@ -12,6 +12,8 @@ class AdsService {
   AdsService._();
   static final AdsService instance = AdsService._();
 
+  static bool launcherMode = false;
+
   // ── Interstitial ────────────────────────────────────
   InterstitialAd? _interstitial;
   bool _isLoadingInterstitial = false;

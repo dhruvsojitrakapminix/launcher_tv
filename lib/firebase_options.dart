@@ -50,18 +50,18 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCh26fQ2eS4myn0IiMvka4eMfdeP7w1dSo',
-    appId: '1:1069185665644:android:85b042edd66d9035686649',
-    messagingSenderId: '1069185665644',
-    projectId: 'new-movie-app-46f46',
-    storageBucket: 'new-movie-app-46f46.firebasestorage.app',
+    apiKey: 'AIzaSyAtwwj_FJ4hd7IJJW00HAlYS1xoWmVYuNc',
+    appId: '1:44830968509:android:10102b41eadf39ffee85d4',
+    messagingSenderId: '44830968509',
+    projectId: 'my-new-bili-bili-app',
+    storageBucket: 'my-new-bili-bili-app.firebasestorage.app',
   );
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyANeEu6giowOGMJsKi8rdeDba064FXP4dA',
-    appId: '1:1069185665644:ios:c370040726d92f76686649',
-    messagingSenderId: '1069185665644',
-    projectId: 'new-movie-app-46f46',
-    storageBucket: 'new-movie-app-46f46.firebasestorage.app',
-    iosBundleId: 'com.supertv.app.as2',
+    apiKey: 'AIzaSyA1_bW0nSdxrdiczkspboNDapiTAZ0IKh8',
+    appId: '1:44830968509:ios:ef126ac8c01b4809ee85d4',
+    messagingSenderId: '44830968509',
+    projectId: 'my-new-bili-bili-app',
+    storageBucket: 'my-new-bili-bili-app.firebasestorage.app',
+    iosBundleId: 'com.dhruv.launcher.app',
   );
 }

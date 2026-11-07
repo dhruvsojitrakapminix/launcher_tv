@@ -321,7 +321,7 @@ class TvDetailView extends StatelessWidget {
     if (p == null) return const SizedBox.shrink();
     final list = [...p.flatrate, ...p.rent, ...p.buy];
     return SizedBox(
-      height: 72.h,
+      height: 75.h,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: list.length,

@@ -30,7 +30,7 @@ class AppPages {
 
   static final pages = <GetPage>[
     // Entry
-    GetPage(name: Routes.LAUNCHER, page: () => const LauncherView()),
+    GetPage(name: Routes.LAUNCHER, page: () => const HomeLauncherView()),
 
     // Onboarding
     GetPage(name: Routes.OB_NAME_AGE,       page: () => const OnboardingNameAgeView()),

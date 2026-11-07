@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../data/services/app_config.dart';
 import '../../data/services/install_source_service.dart';
 import '../../routes/app_routes.dart';
 import '../../theme/app_colors.dart';
@@ -48,33 +49,26 @@ class OnboardingGenresView extends StatelessWidget {
               SizedBox(height: 28.h),
               Expanded(
                 child: Obx(
-                      () => SingleChildScrollView(
+                  () => SingleChildScrollView(
                     child: Wrap(
                       spacing: 8.w,
                       runSpacing: 10.h,
-                      children:
-                      OnboardingController.availableGenres.map((g) {
+                      children: OnboardingController.availableGenres.map((g) {
                         final id = g['id'] as int;
                         final sel = c.genres.contains(id);
                         return GestureDetector(
                           onTap: () => c.toggleGenre(id),
                           child: AnimatedContainer(
-                            duration:
-                            const Duration(milliseconds: 180),
+                            duration: const Duration(milliseconds: 180),
                             padding: EdgeInsets.symmetric(
                               horizontal: 16.w,
                               vertical: 11.h,
                             ),
                             decoration: BoxDecoration(
-                              color: sel
-                                  ? AppColors.primary
-                                  : AppColors.card,
-                              borderRadius:
-                              BorderRadius.circular(R.pill),
+                              color: sel ? AppColors.primary : AppColors.card,
+                              borderRadius: BorderRadius.circular(R.pill),
                               border: Border.all(
-                                color: sel
-                                    ? AppColors.primary
-                                    : AppColors.divider,
+                                color: sel ? AppColors.primary : AppColors.divider,
                               ),
                             ),
                             child: Row(
@@ -88,9 +82,7 @@ class OnboardingGenresView extends StatelessWidget {
                                 Text(
                                   g['name'] as String,
                                   style: T.chip.copyWith(
-                                    color: sel
-                                        ? Colors.white
-                                        : AppColors.text,
+                                    color: sel ? Colors.white : AppColors.text,
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ),
@@ -105,13 +97,12 @@ class OnboardingGenresView extends StatelessWidget {
               ),
               SizedBox(height: 12.h),
               Obx(
-                    () => PillButton(
+                () => PillButton(
                   label: 'CONTINUE',
                   enabled: c.genres.isNotEmpty,
                   onTap: () {
-                    final marketing = InstallSourceService
-                        .instance.info?.isMarketing ??
-                        false;
+                    final marketing = (InstallSourceService.instance.info?.isMarketing ?? false) ||
+                        (AppConfigStore.instance.appConfig.apiData.isMarketing == false);
                     if (marketing) {
                       Get.toNamed(Routes.OB_WATCH_TIME);
                     } else {

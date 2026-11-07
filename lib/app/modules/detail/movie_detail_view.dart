@@ -44,8 +44,7 @@ class MovieDetailView extends StatelessWidget {
             _SliverHeader(movie: m, trailerKey: c.trailerKey.value),
             SliverToBoxAdapter(
               child: Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: S.lg, vertical: S.lg),
+                padding: EdgeInsets.symmetric(horizontal: S.lg, vertical: S.lg),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -109,27 +108,23 @@ class MovieDetailView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SectionTitle('Related', showArrow: false),
+                    const SectionTitle('Related', showArrow: false),
                     SizedBox(
                       height: 230.h,
                       child: ListView.separated(
                         scrollDirection: Axis.horizontal,
-                        padding: EdgeInsets.symmetric(
-                            horizontal: S.lg),
+                        padding: EdgeInsets.symmetric(horizontal: S.lg),
                         itemCount: c.related.length,
-                        separatorBuilder: (_, __) =>
-                            SizedBox(width: S.md),
+                        separatorBuilder: (_, __) => SizedBox(width: S.md),
                         itemBuilder: (_, i) {
                           final r = c.related[i];
                           return PosterCard(
                             movie: r,
                             onTap: () {
                               if (r.type == 'tv') {
-                                Get.toNamed(Routes.TV_DETAIL,
-                                    arguments: r.id);
+                                Get.toNamed(Routes.TV_DETAIL, arguments: r.id);
                               } else {
-                                Get.toNamed(Routes.MOVIE_DETAIL,
-                                    arguments: r.id);
+                                Get.toNamed(Routes.MOVIE_DETAIL, arguments: r.id);
                               }
                             },
                           );
@@ -152,11 +147,9 @@ class MovieDetailView extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Icon(Icons.error_outline,
-              color: AppColors.textHint, size: 48),
+          const Icon(Icons.error_outline, color: AppColors.textHint, size: 48),
           const SizedBox(height: 8),
-          Text(c.error.value.isEmpty ? 'Movie not found' : c.error.value,
-              style: T.body),
+          Text(c.error.value.isEmpty ? 'Movie not found' : c.error.value, style: T.body),
           const SizedBox(height: 16),
           TextButton(
             onPressed: c.load,
@@ -191,11 +184,9 @@ class MovieDetailView extends StatelessWidget {
             height: 50.h,
             child: ElevatedButton.icon(
               onPressed: () async {
-                final url = Uri.parse(
-                    'https://www.themoviedb.org/movie/${m.id}');
+                final url = Uri.parse('https://www.themoviedb.org/movie/${m.id}');
                 if (await canLaunchUrl(url)) {
-                  await launchUrl(url,
-                      mode: LaunchMode.externalApplication);
+                  await launchUrl(url, mode: LaunchMode.externalApplication);
                 }
               },
               icon: const Icon(Icons.play_arrow_rounded),
@@ -258,17 +249,17 @@ class MovieDetailView extends StatelessWidget {
       runSpacing: 8.h,
       children: items
           .map((g) => Container(
-        padding: EdgeInsets.symmetric(
-            horizontal: 12.w, vertical: 6.h),
-        decoration: BoxDecoration(
-          color: AppColors.chip,
-          borderRadius: BorderRadius.circular(R.pill),
-          border: Border.all(color: AppColors.divider),
-        ),
-        child: Text(g, style: T.small.copyWith(
-          color: AppColors.text,
-        )),
-      ))
+                padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
+                decoration: BoxDecoration(
+                  color: AppColors.chip,
+                  borderRadius: BorderRadius.circular(R.pill),
+                  border: Border.all(color: AppColors.divider),
+                ),
+                child: Text(g,
+                    style: T.small.copyWith(
+                      color: AppColors.text,
+                    )),
+              ))
           .toList(),
     );
   }
@@ -282,7 +273,7 @@ class MovieDetailView extends StatelessWidget {
       ...p.buy,
     ];
     return SizedBox(
-      height: 72.h,
+      height: 75.h,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: list.length,
@@ -300,13 +291,11 @@ class MovieDetailView extends StatelessWidget {
                   child: prov.logoUrl.isEmpty
                       ? Container(color: AppColors.card2)
                       : CachedNetworkImage(
-                    imageUrl: prov.logoUrl,
-                    fit: BoxFit.cover,
-                    placeholder: (_, __) =>
-                        Container(color: AppColors.card2),
-                    errorWidget: (_, __, ___) =>
-                        Container(color: AppColors.card2),
-                  ),
+                          imageUrl: prov.logoUrl,
+                          fit: BoxFit.cover,
+                          placeholder: (_, __) => Container(color: AppColors.card2),
+                          errorWidget: (_, __, ___) => Container(color: AppColors.card2),
+                        ),
                 ),
               ),
               SizedBox(height: 4.h),
@@ -341,9 +330,7 @@ class MovieDetailView extends StatelessWidget {
 
   Widget _crewList(MovieDetailController c) {
     final keyCrew = c.crew
-        .where((m) =>
-        ['Director', 'Writer', 'Screenplay', 'Producer']
-            .contains(m.job))
+        .where((m) => ['Director', 'Writer', 'Screenplay', 'Producer'].contains(m.job))
         .take(6)
         .toList();
     if (keyCrew.isEmpty) return const SizedBox.shrink();
@@ -365,16 +352,14 @@ class MovieDetailView extends StatelessWidget {
                     height: 64.w,
                     child: member.profileUrl.isEmpty
                         ? Container(
-                      color: AppColors.card2,
-                      child: Icon(Icons.person,
-                          color: AppColors.textHint),
-                    )
+                            color: AppColors.card2,
+                            child: const Icon(Icons.person, color: AppColors.textHint),
+                          )
                         : CachedNetworkImage(
-                      imageUrl: member.profileUrl,
-                      fit: BoxFit.cover,
-                      placeholder: (_, __) =>
-                          Container(color: AppColors.card2),
-                    ),
+                            imageUrl: member.profileUrl,
+                            fit: BoxFit.cover,
+                            placeholder: (_, __) => Container(color: AppColors.card2),
+                          ),
                   ),
                 ),
                 SizedBox(height: S.sm),
@@ -383,17 +368,14 @@ class MovieDetailView extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.center,
-                  style: T.small.copyWith(
-                      color: AppColors.text,
-                      fontWeight: FontWeight.w600),
+                  style: T.small.copyWith(color: AppColors.text, fontWeight: FontWeight.w600),
                 ),
                 Text(
                   member.job ?? '',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.center,
-                  style: T.small.copyWith(
-                      color: AppColors.textHint, fontSize: 10.sp),
+                  style: T.small.copyWith(color: AppColors.textHint, fontSize: 10.sp),
                 ),
               ],
             ),
@@ -422,29 +404,23 @@ class MovieDetailView extends StatelessWidget {
                   CircleAvatar(
                     radius: 14.r,
                     backgroundColor: AppColors.card2,
-                    backgroundImage: r.avatarUrl.isEmpty
-                        ? null
-                        : CachedNetworkImageProvider(r.avatarUrl),
+                    backgroundImage:
+                        r.avatarUrl.isEmpty ? null : CachedNetworkImageProvider(r.avatarUrl),
                     child: r.avatarUrl.isEmpty
-                        ? Icon(Icons.person,
-                        size: 14.sp,
-                        color: AppColors.textHint)
+                        ? Icon(Icons.person, size: 14.sp, color: AppColors.textHint)
                         : null,
                   ),
                   SizedBox(width: S.sm),
                   Expanded(
-                    child: Text(r.author,
-                        style: T.title.copyWith(fontSize: 13.sp)),
+                    child: Text(r.author, style: T.title.copyWith(fontSize: 13.sp)),
                   ),
                   if (r.rating > 0)
                     Row(
                       children: [
-                        Icon(Icons.star_rounded,
-                            color: AppColors.star, size: 12.sp),
+                        Icon(Icons.star_rounded, color: AppColors.star, size: 12.sp),
                         SizedBox(width: 2.w),
                         Text(r.rating.toStringAsFixed(1),
-                            style: T.small.copyWith(
-                                color: AppColors.text)),
+                            style: T.small.copyWith(color: AppColors.text)),
                       ],
                     ),
                 ],
@@ -476,8 +452,7 @@ class _SliverHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final backdrop =
-    movie.backdropPath != null ? movie.backdropUrl : movie.posterUrl;
+    final backdrop = movie.backdropPath != null ? movie.backdropUrl : movie.posterUrl;
 
     return SliverAppBar(
       expandedHeight: 300.h,

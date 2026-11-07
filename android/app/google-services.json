@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "1069185665644",
-    "project_id": "new-movie-app-46f46",
-    "storage_bucket": "new-movie-app-46f46.firebasestorage.app"
+    "project_number": "44830968509",
+    "project_id": "my-new-bili-bili-app",
+    "storage_bucket": "my-new-bili-bili-app.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1069185665644:android:61381a61c5a2fc7a686649",
+        "mobilesdk_app_id": "1:44830968509:android:6c14019a7bf5b00bee85d4",
         "android_client_info": {
-          "package_name": "com.latinoflex.a1"
+          "package_name": "com.billibilli.flex.A1B"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCh26fQ2eS4myn0IiMvka4eMfdeP7w1dSo"
+          "current_key": "AIzaSyAtwwj_FJ4hd7IJJW00HAlYS1xoWmVYuNc"
         }
       ],
       "services": {
@@ -26,15 +26,15 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1069185665644:android:9e15cc084ddd867f686649",
+        "mobilesdk_app_id": "1:44830968509:android:8e5b66d261a6fe24ee85d4",
         "android_client_info": {
-          "package_name": "com.nova.filx.movies.tv.as1"
+          "package_name": "com.billibilli.flex.A1C"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCh26fQ2eS4myn0IiMvka4eMfdeP7w1dSo"
+          "current_key": "AIzaSyAtwwj_FJ4hd7IJJW00HAlYS1xoWmVYuNc"
         }
       ],
       "services": {
@@ -45,15 +45,15 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1069185665644:android:5869359f1df0459a686649",
+        "mobilesdk_app_id": "1:44830968509:android:7963a801ce0aa6e0ee85d4",
         "android_client_info": {
-          "package_name": "com.rbt.movies.show.as2"
+          "package_name": "com.billibilli.flex.A1D"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCh26fQ2eS4myn0IiMvka4eMfdeP7w1dSo"
+          "current_key": "AIzaSyAtwwj_FJ4hd7IJJW00HAlYS1xoWmVYuNc"
         }
       ],
       "services": {
@@ -64,15 +64,15 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1069185665644:android:85b042edd66d9035686649",
+        "mobilesdk_app_id": "1:44830968509:android:e7ad947d44cf2ba0ee85d4",
         "android_client_info": {
-          "package_name": "com.supertv.app.as2"
+          "package_name": "com.billibilli.flex.A1E"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCh26fQ2eS4myn0IiMvka4eMfdeP7w1dSo"
+          "current_key": "AIzaSyAtwwj_FJ4hd7IJJW00HAlYS1xoWmVYuNc"
         }
       ],
       "services": {
@@ -83,15 +83,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1069185665644:android:13896d9514ae5b8d686649",
+        "mobilesdk_app_id": "1:44830968509:android:10102b41eadf39ffee85d4",
         "android_client_info": {
-          "package_name": "com.vedooflex.a1"
+          "package_name": "com.dhruv.launcher.app"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCh26fQ2eS4myn0IiMvka4eMfdeP7w1dSo"
+          "current_key": "AIzaSyAtwwj_FJ4hd7IJJW00HAlYS1xoWmVYuNc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:44830968509:android:53917ed235f9a5d7ee85d4",
+        "android_client_info": {
+          "package_name": "com.doflix.flexm12"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtwwj_FJ4hd7IJJW00HAlYS1xoWmVYuNc"
         }
       ],
       "services": {

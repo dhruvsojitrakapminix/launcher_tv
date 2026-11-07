@@ -59,21 +59,16 @@ class OnboardingLauncherStyleView extends StatelessWidget {
                   children: _gridOptions.map((g) {
                     final isSel = selected == g['id'];
                     return GestureDetector(
-                      onTap: () =>
-                      c.gridColumns.value = g['id'] as int,
+                      onTap: () => c.gridColumns.value = g['id'] as int,
                       child: AnimatedContainer(
                         duration: const Duration(milliseconds: 180),
                         margin: EdgeInsets.only(bottom: 12.h),
                         padding: EdgeInsets.all(16.w),
                         decoration: BoxDecoration(
-                          color: isSel
-                              ? AppColors.primary.withOpacity(0.12)
-                              : AppColors.card,
+                          color: isSel ? AppColors.primary.withOpacity(0.12) : AppColors.card,
                           borderRadius: BorderRadius.circular(R.lg),
                           border: Border.all(
-                            color: isSel
-                                ? AppColors.primary
-                                : AppColors.divider,
+                            color: isSel ? AppColors.primary : AppColors.divider,
                             width: isSel ? 1.5 : 1,
                           ),
                         ),
@@ -83,10 +78,8 @@ class OnboardingLauncherStyleView extends StatelessWidget {
                               width: 40.r,
                               height: 40.r,
                               child: GridView.builder(
-                                physics:
-                                const NeverScrollableScrollPhysics(),
-                                gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
+                                physics: const NeverScrollableScrollPhysics(),
+                                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: g['id'] as int,
                                   crossAxisSpacing: 2,
                                   mainAxisSpacing: 2,
@@ -94,11 +87,8 @@ class OnboardingLauncherStyleView extends StatelessWidget {
                                 itemCount: (g['id'] as int) * 2,
                                 itemBuilder: (_, i) => Container(
                                   decoration: BoxDecoration(
-                                    color: isSel
-                                        ? AppColors.primary
-                                        : AppColors.textHint,
-                                    borderRadius:
-                                    BorderRadius.circular(1),
+                                    color: isSel ? AppColors.primary : AppColors.textHint,
+                                    borderRadius: BorderRadius.circular(1),
                                   ),
                                 ),
                               ),
@@ -106,24 +96,20 @@ class OnboardingLauncherStyleView extends StatelessWidget {
                             SizedBox(width: 16.w),
                             Expanded(
                               child: Column(
-                                crossAxisAlignment:
-                                CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     g['label'] as String,
                                     style: T.h3.copyWith(
                                       fontSize: 16.sp,
                                       fontWeight: FontWeight.w800,
-                                      color: isSel
-                                          ? AppColors.primary
-                                          : AppColors.text,
+                                      color: isSel ? AppColors.primary : AppColors.text,
                                     ),
                                   ),
                                   SizedBox(height: 2.h),
                                   Text(
                                     g['desc'] as String,
-                                    style: T.small
-                                        .copyWith(fontSize: 12.sp),
+                                    style: T.small.copyWith(fontSize: 12.sp),
                                   ),
                                 ],
                               ),
@@ -156,7 +142,7 @@ class OnboardingLauncherStyleView extends StatelessWidget {
               ),
               SizedBox(height: 8.h),
               Obx(
-                    () => SwitchListTile(
+                () => SwitchListTile(
                   value: c.showDock.value,
                   onChanged: (v) => c.showDock.value = v,
                   activeColor: AppColors.primary,

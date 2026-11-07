@@ -56,8 +56,7 @@ class OnboardingWatchTimeView extends StatelessWidget {
                 child: Obx(() {
                   return GridView.builder(
                     itemCount: _times.length,
-                    gridDelegate:
-                    SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 12.w,
                       mainAxisSpacing: 12.h,
@@ -72,14 +71,10 @@ class OnboardingWatchTimeView extends StatelessWidget {
                         child: AnimatedContainer(
                           duration: const Duration(milliseconds: 180),
                           decoration: BoxDecoration(
-                            color: isSel
-                                ? AppColors.primary.withOpacity(0.12)
-                                : AppColors.card,
+                            color: isSel ? AppColors.primary.withOpacity(0.12) : AppColors.card,
                             borderRadius: BorderRadius.circular(R.lg),
                             border: Border.all(
-                              color: isSel
-                                  ? AppColors.primary
-                                  : AppColors.divider,
+                              color: isSel ? AppColors.primary : AppColors.divider,
                               width: isSel ? 1.5 : 1,
                             ),
                           ),
@@ -96,9 +91,7 @@ class OnboardingWatchTimeView extends StatelessWidget {
                                 style: T.h3.copyWith(
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.w800,
-                                  color: isSel
-                                      ? AppColors.primary
-                                      : AppColors.text,
+                                  color: isSel ? AppColors.primary : AppColors.text,
                                 ),
                               ),
                               SizedBox(height: 4.h),
@@ -116,7 +109,7 @@ class OnboardingWatchTimeView extends StatelessWidget {
               ),
               SizedBox(height: 16.h),
               Obx(
-                    () => PillButton(
+                () => PillButton(
                   label: 'NEXT',
                   enabled: c.watchTimes.isNotEmpty,
                   onTap: () => Get.toNamed(Routes.OB_NOTIF_TYPES),
