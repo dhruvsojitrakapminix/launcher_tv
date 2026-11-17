@@ -1,24 +1,26 @@
 import 'dart:ui';
 
+import 'package:facebook_app_events/facebook_app_events.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart'; // Required for MobileAds init
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import 'app/data/repositories/favorites_repository.dart';
 import 'app/data/services/ads_service.dart';
 import 'app/data/services/app_config.dart';
 import 'app/data/services/app_update_service.dart';
 import 'app/data/services/custom_banner_service.dart';
-import 'app/data/services/install_source_service.dart';
 import 'app/data/services/watch_history.dart';
 import 'app/routes/app_pages.dart';
 import 'app/routes/app_routes.dart';
 import 'app/theme/app_theme.dart';
 import 'firebase_options.dart';
+
+final facebookAppEvents = FacebookAppEvents();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,7 +43,7 @@ Future<void> main() async {
 
   // ── App services ───────────────────────────
   await AppConfigStore.instance.init();
-  InstallSourceService.instance.init();
+  // InstallSourceService.instance.init();
   CustomBannerService.instance.init();
   WatchHistory.instance.init();
   FavoritesRepo.i.init();

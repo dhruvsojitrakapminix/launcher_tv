@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import '../../data/services/ads_service.dart';
 import '../../data/services/app_config.dart';
-import '../../data/services/launcher_service.dart';
 import '../../routes/app_routes.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_radius.dart';
@@ -54,7 +52,7 @@ class OnboardingFinalView extends StatelessWidget {
 
               Center(
                 child: Obx(
-                      () => Text(
+                  () => Text(
                     'ALL SET${c.name.value.isNotEmpty ? ", ${c.name.value.toUpperCase()}" : ""}!',
                     textAlign: TextAlign.center,
                     style: T.h1.copyWith(
@@ -82,11 +80,11 @@ class OnboardingFinalView extends StatelessWidget {
                       children: s.entries
                           .map(
                             (e) => _summary(
-                          _iconFor(e.key),
-                          e.key,
-                          e.value,
-                        ),
-                      )
+                              _iconFor(e.key),
+                              e.key,
+                              e.value,
+                            ),
+                          )
                           .toList(),
                     ),
                   );
@@ -121,7 +119,7 @@ class OnboardingFinalView extends StatelessWidget {
                     foregroundColor: Colors.white,
                     elevation: 0,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(R.pill),
+                      borderRadius: BorderRadius.circular(R.md),
                     ),
                   ),
                   child: Text(

@@ -128,7 +128,7 @@ class PillButton extends StatelessWidget {
           disabledForegroundColor: AppColors.textHint,
           elevation: 0,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(R.pill),
+            borderRadius: BorderRadius.circular(R.md),
           ),
         ),
         child: Text(

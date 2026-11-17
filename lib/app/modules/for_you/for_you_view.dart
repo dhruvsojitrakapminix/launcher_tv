@@ -39,6 +39,7 @@ class ForYouView extends StatelessWidget {
             options: CarouselOptions(
               scrollDirection: Axis.vertical,
               autoPlay: true,
+
               height: double.infinity,
               viewportFraction: 1.0,
               enableInfiniteScroll: false,

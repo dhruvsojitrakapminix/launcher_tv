@@ -24,6 +24,7 @@ dependencies:
   playx_home_launcher: ^0.2.0
   wallpaper_handler: ^0.0.3
   permission_handler: ^12.0.1
+  facebook_app_events: ^0.34.0
 
   # State / Routing
   get: ^4.7.3

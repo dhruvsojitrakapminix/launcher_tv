@@ -101,8 +101,7 @@ class OnboardingGenresView extends StatelessWidget {
                   label: 'CONTINUE',
                   enabled: c.genres.isNotEmpty,
                   onTap: () {
-                    final marketing = (InstallSourceService.instance.info?.isMarketing ?? false) ||
-                        (AppConfigStore.instance.appConfig.apiData.isMarketing == false);
+                    final marketing = (AppConfigStore.instance.appConfig.apiData.isMarketing);
                     if (marketing) {
                       Get.toNamed(Routes.OB_WATCH_TIME);
                     } else {

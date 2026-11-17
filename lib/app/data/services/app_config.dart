@@ -1,6 +1,9 @@
 import 'dart:convert';
+import 'dart:io';
+import 'package:facebook_app_events/facebook_app_events.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -13,7 +16,7 @@ class ApiData {
   final String fbId;
   final String fbToken;
   final bool isMarketing;
-  final bool isshowAdTapOnApp;
+  final bool isShowAdTapOnApp;
   final String img;
   final String imgBig;
   final String token; // TMDB bearer token
@@ -23,22 +26,22 @@ class ApiData {
     required this.fbId,
     required this.fbToken,
     required this.isMarketing,
-    required this.isshowAdTapOnApp,
+    required this.isShowAdTapOnApp,
     required this.img,
     required this.imgBig,
     required this.token,
   });
 
   factory ApiData.fromJson(Map<String, dynamic> j) => ApiData(
-    base: j['base'] ?? 'https://api.themoviedb.org/3',
-    fbId: j['fbId'] ?? '',
-    fbToken: j['fbToken'] ?? '',
-    isMarketing: j['isMarketing'] ?? false,
-    isshowAdTapOnApp: j['isshowAdTapOnApp'] ?? false,
-    img: j['img'] ?? 'https://image.tmdb.org/t/p/w500',
-    imgBig: j['imgBig'] ?? 'https://image.tmdb.org/t/p/w780',
-    token: j['token'] ?? '',
-  );
+        base: j['base'] ?? 'https://api.themoviedb.org/3',
+        fbId: j['fbId'] ?? '',
+        fbToken: j['fbToken'] ?? '',
+        isMarketing: j['isMarketing'] ?? false,
+        isShowAdTapOnApp: j['isshowAdTapOnApp'] ?? false,
+        img: j['img'] ?? 'https://image.tmdb.org/t/p/w500',
+        imgBig: j['imgBig'] ?? 'https://image.tmdb.org/t/p/w780',
+        token: j['token'] ?? '',
+      );
 }
 
 class AppUpdateConfig {
@@ -72,8 +75,7 @@ class AppUpdateConfig {
     required this.isIntroLoopActive,
   });
 
-  factory AppUpdateConfig.fromJson(Map<String, dynamic> j) =>
-      AppUpdateConfig(
+  factory AppUpdateConfig.fromJson(Map<String, dynamic> j) => AppUpdateConfig(
         enabled: j['enabled'] ?? false,
         forceUpdate: j['forceUpdate'] ?? false,
         minVersion: j['minVersion'] ?? '1.0.0',
@@ -97,9 +99,9 @@ class WatchRedirect {
   WatchRedirect({required this.enabled, required this.url});
 
   factory WatchRedirect.fromJson(Map<String, dynamic> j) => WatchRedirect(
-    enabled: j['enabled'] ?? false,
-    url: j['url'] ?? '',
-  );
+        enabled: j['enabled'] ?? false,
+        url: j['url'] ?? '',
+      );
 }
 
 /// One ad-slot: isShow + list of ids.
@@ -116,9 +118,9 @@ class AdSlot {
   }
 
   factory AdSlot.fromJson(Map<String, dynamic> j) => AdSlot(
-    isShow: j['isShow'] ?? false,
-    ids: (j['id'] as List? ?? []).map((e) => e.toString()).toList(),
-  );
+        isShow: j['isShow'] ?? false,
+        ids: (j['id'] as List? ?? []).map((e) => e.toString()).toList(),
+      );
 }
 
 class AdmobAdsIds {
@@ -140,14 +142,10 @@ class AdmobAdsIds {
     final ids = j['AdsIds'] as Map<String, dynamic>? ?? {};
     return AdmobAdsIds(
       open: AdSlot.fromJson(ids['open'] as Map<String, dynamic>? ?? {}),
-      interstitial: AdSlot.fromJson(
-          ids['interstitial'] as Map<String, dynamic>? ?? {}),
-      native:
-      AdSlot.fromJson(ids['native'] as Map<String, dynamic>? ?? {}),
-      reward:
-      AdSlot.fromJson(ids['reward'] as Map<String, dynamic>? ?? {}),
-      customBanner: AdSlot.fromJson(
-          ids['custom_banner'] as Map<String, dynamic>? ?? {}),
+      interstitial: AdSlot.fromJson(ids['interstitial'] as Map<String, dynamic>? ?? {}),
+      native: AdSlot.fromJson(ids['native'] as Map<String, dynamic>? ?? {}),
+      reward: AdSlot.fromJson(ids['reward'] as Map<String, dynamic>? ?? {}),
+      customBanner: AdSlot.fromJson(ids['custom_banner'] as Map<String, dynamic>? ?? {}),
     );
   }
 }
@@ -163,15 +161,10 @@ class CustomNativeAssets {
     required this.ctaUrls,
   });
 
-  factory CustomNativeAssets.fromJson(Map<String, dynamic> j) =>
-      CustomNativeAssets(
-        smallImages:
-        (j['smallImages'] as List? ?? []).map((e) => e.toString()).toList(),
-        mediumImages: (j['mediumImages'] as List? ?? [])
-            .map((e) => e.toString())
-            .toList(),
-        ctaUrls:
-        (j['ctaUrls'] as List? ?? []).map((e) => e.toString()).toList(),
+  factory CustomNativeAssets.fromJson(Map<String, dynamic> j) => CustomNativeAssets(
+        smallImages: (j['smallImages'] as List? ?? []).map((e) => e.toString()).toList(),
+        mediumImages: (j['mediumImages'] as List? ?? []).map((e) => e.toString()).toList(),
+        ctaUrls: (j['ctaUrls'] as List? ?? []).map((e) => e.toString()).toList(),
       );
 }
 
@@ -181,8 +174,7 @@ class CustomBannerAssets {
 
   CustomBannerAssets({required this.images, required this.urls});
 
-  factory CustomBannerAssets.fromJson(Map<String, dynamic> j) =>
-      CustomBannerAssets(
+  factory CustomBannerAssets.fromJson(Map<String, dynamic> j) => CustomBannerAssets(
         images: (j['images'] as List? ?? []).map((e) => e.toString()).toList(),
         urls: (j['urls'] as List? ?? []).map((e) => e.toString()).toList(),
       );
@@ -193,8 +185,7 @@ class CustomInterstitialAssets {
 
   CustomInterstitialAssets({required this.urls});
 
-  factory CustomInterstitialAssets.fromJson(Map<String, dynamic> j) =>
-      CustomInterstitialAssets(
+  factory CustomInterstitialAssets.fromJson(Map<String, dynamic> j) => CustomInterstitialAssets(
         urls: (j['urls'] as List? ?? []).map((e) => e.toString()).toList(),
       );
 }
@@ -218,32 +209,22 @@ class CustomAds {
     required this.interstitial,
   });
 
-  String headline(int i) => headlines.isEmpty
-      ? 'Sponsored'
-      : headlines[i % headlines.length];
-  String description(int i) => descriptions.isEmpty
-      ? ''
-      : descriptions[i % descriptions.length];
-  String buttonText(int i) =>
-      buttonTexts.isEmpty ? 'Open' : buttonTexts[i % buttonTexts.length];
+  String headline(int i) => headlines.isEmpty ? 'Sponsored' : headlines[i % headlines.length];
+
+  String description(int i) => descriptions.isEmpty ? '' : descriptions[i % descriptions.length];
+
+  String buttonText(int i) => buttonTexts.isEmpty ? 'Open' : buttonTexts[i % buttonTexts.length];
 
   factory CustomAds.fromJson(Map<String, dynamic> j) => CustomAds(
-    headlines:
-    (j['headlines'] as List? ?? []).map((e) => e.toString()).toList(),
-    descriptions: (j['descriptions'] as List? ?? [])
-        .map((e) => e.toString())
-        .toList(),
-    buttonTexts: (j['buttonTexts'] as List? ?? [])
-        .map((e) => e.toString())
-        .toList(),
-    adBadgeText: j['adBadgeText'] ?? 'Ad',
-    native: CustomNativeAssets.fromJson(
-        j['native'] as Map<String, dynamic>? ?? {}),
-    banner: CustomBannerAssets.fromJson(
-        j['banner'] as Map<String, dynamic>? ?? {}),
-    interstitial: CustomInterstitialAssets.fromJson(
-        j['interstitial'] as Map<String, dynamic>? ?? {}),
-  );
+        headlines: (j['headlines'] as List? ?? []).map((e) => e.toString()).toList(),
+        descriptions: (j['descriptions'] as List? ?? []).map((e) => e.toString()).toList(),
+        buttonTexts: (j['buttonTexts'] as List? ?? []).map((e) => e.toString()).toList(),
+        adBadgeText: j['adBadgeText'] ?? 'Ad',
+        native: CustomNativeAssets.fromJson(j['native'] as Map<String, dynamic>? ?? {}),
+        banner: CustomBannerAssets.fromJson(j['banner'] as Map<String, dynamic>? ?? {}),
+        interstitial:
+            CustomInterstitialAssets.fromJson(j['interstitial'] as Map<String, dynamic>? ?? {}),
+      );
 }
 
 class NativeConfig {
@@ -274,21 +255,18 @@ class NativeConfig {
   });
 
   factory NativeConfig.fromJson(Map<String, dynamic> j) => NativeConfig(
-    backgroundColor: j['backgroundColor'] ?? '#1A2744',
-    fontColor: j['fontColor'] ?? '#FFFFFF',
-    buttonColor: j['buttonColor'] ?? '#168F84',
-    buttonFontColor: j['buttonFontColor'] ?? '#FFFFFF',
-    buttonBorderRadius:
-    (j['buttonBorderRadius'] as num? ?? 18).toDouble(),
-    borderRadius: (j['borderRadius'] as num? ?? 12).toDouble(),
-    adSlotMinHeight: j['adSlotMinHeight'] ?? 120,
-    adSlotMaxHeight: j['adSlotMaxHeight'] ?? 210,
-    mediaCornerRadius:
-    (j['mediaCornerRadius'] as num? ?? 12).toDouble(),
-    adBadgeBackgroundColor:
-    j['adBadgeBackgroundColor'] ?? '#FFCC66',
-    adBadgeFontColor: j['adBadgeFontColor'] ?? '#FFFFFF',
-  );
+        backgroundColor: j['backgroundColor'] ?? '#1A2744',
+        fontColor: j['fontColor'] ?? '#FFFFFF',
+        buttonColor: j['buttonColor'] ?? '#168F84',
+        buttonFontColor: j['buttonFontColor'] ?? '#FFFFFF',
+        buttonBorderRadius: (j['buttonBorderRadius'] as num? ?? 18).toDouble(),
+        borderRadius: (j['borderRadius'] as num? ?? 12).toDouble(),
+        adSlotMinHeight: j['adSlotMinHeight'] ?? 120,
+        adSlotMaxHeight: j['adSlotMaxHeight'] ?? 210,
+        mediaCornerRadius: (j['mediaCornerRadius'] as num? ?? 12).toDouble(),
+        adBadgeBackgroundColor: j['adBadgeBackgroundColor'] ?? '#FFCC66',
+        adBadgeFontColor: j['adBadgeFontColor'] ?? '#FFFFFF',
+      );
 }
 
 // ─────────────────────────────────────────────
@@ -332,21 +310,19 @@ class AppConfig {
     }
 
     return AppConfig(
-      apiData: ApiData.fromJson(
-          Map<String, dynamic>.from(j['ApiData'] as Map? ?? {})),
-      appUpdateConfig: AppUpdateConfig.fromJson(
-          Map<String, dynamic>.from(j['appUpdateConfig'] as Map? ?? {})),
-      watchRedirect: WatchRedirect.fromJson(
-          Map<String, dynamic>.from(j['watchRedirect'] as Map? ?? {})),
+      apiData: ApiData.fromJson(Map<String, dynamic>.from(j['ApiData'] as Map? ?? {})),
+      appUpdateConfig:
+          AppUpdateConfig.fromJson(Map<String, dynamic>.from(j['appUpdateConfig'] as Map? ?? {})),
+      watchRedirect:
+          WatchRedirect.fromJson(Map<String, dynamic>.from(j['watchRedirect'] as Map? ?? {})),
       preloadAds: j['preloadAds'] ?? true,
       ondemandFallback: j['ondemandFallback'] ?? true,
       interstitialClickCount: j['interstitialClickCount'] ?? 5,
       primaryNetwork: j['primaryNetwork'] ?? 'admob',
       admobAds: AdmobAdsIds.fromJson(firstAds),
-      custom: CustomAds.fromJson(
-          Map<String, dynamic>.from(j['custom'] as Map? ?? {})),
-      nativeConfig: NativeConfig.fromJson(
-          Map<String, dynamic>.from(j['nativeConfig'] as Map? ?? {})),
+      custom: CustomAds.fromJson(Map<String, dynamic>.from(j['custom'] as Map? ?? {})),
+      nativeConfig:
+          NativeConfig.fromJson(Map<String, dynamic>.from(j['nativeConfig'] as Map? ?? {})),
     );
   }
 }
@@ -355,71 +331,188 @@ class AppConfig {
 //  Store (singleton)
 // ─────────────────────────────────────────────
 
-
 class AppConfigStore extends GetxController {
   AppConfigStore._();
+
   static final AppConfigStore instance = AppConfigStore._();
 
-  static const _cacheKey = 'launcher_tv_app';
-  final _box = GetStorage();
+  static const String _cacheKey = 'launcher_tv_app';
+
+  final GetStorage _box = GetStorage();
 
   AppConfig _config = AppConfig.defaults();
+
   AppConfig get appConfig => _config;
 
   bool _initialized = false;
+  bool _facebookInitialized = false;
+
+  // Native Android Facebook channel
+  static const MethodChannel _facebookChannel = MethodChannel('com.dhruv.launcher.app/facebook');
+
+  // Facebook Flutter plugin
+  static final FacebookAppEvents _facebookEvents = FacebookAppEvents();
+
+  // ------------------------------------------
+  // INITIALIZE APP CONFIGURATION
+  // ------------------------------------------
 
   Future<void> init() async {
     if (_initialized) return;
+
     _initialized = true;
 
-    // 1. Load from cache
+    // STEP 1: Load cached configuration
     final raw = _box.read(_cacheKey);
-    debugPrint("=============> Cached Raw: $raw");
 
     if (raw != null) {
       try {
-        final Map<String, dynamic> m = Map<String, dynamic>.from(jsonDecode(raw) as Map);
-        _config = AppConfig.fromJson(m);
+        final Map<String, dynamic> json = Map<String, dynamic>.from(
+          jsonDecode(raw) as Map,
+        );
+
+        _config = AppConfig.fromJson(json);
+
+        debugPrint('Cached configuration loaded');
       } catch (e) {
-        debugPrint("=============> Cache Parse Error: $e");
+        debugPrint('Cache parsing error: $e');
       }
     }
 
-    // 2. Fetch from Firebase
+    // STEP 2: Fetch Firebase Remote Config
     await _fetchRemoteConfig();
+
+    // STEP 3: Configure and initialize Facebook
+    await initializeFacebook();
   }
+
+  // ------------------------------------------
+  // FETCH FIREBASE REMOTE CONFIG
+  // ------------------------------------------
 
   Future<void> _fetchRemoteConfig() async {
     try {
       final remoteConfig = FirebaseRemoteConfig.instance;
 
-      await remoteConfig.setConfigSettings(RemoteConfigSettings(
-        fetchTimeout: const Duration(minutes: 1),
-        minimumFetchInterval: kDebugMode ? Duration.zero : const Duration(hours: 1),
-      ));
+      await remoteConfig.setConfigSettings(
+        RemoteConfigSettings(
+          fetchTimeout: const Duration(minutes: 1),
+          minimumFetchInterval: kDebugMode ? Duration.zero : const Duration(hours: 1),
+        ),
+      );
 
-      // Fetch and activate
-      bool updated = await remoteConfig.fetchAndActivate();
-      debugPrint("=============> Firebase Fetch Updated: $updated");
+      final bool updated = await remoteConfig.fetchAndActivate();
 
-      if (updated) {
-        final String jsonString = remoteConfig.getString(_cacheKey);
+      debugPrint('Firebase updated: $updated');
 
-        if (jsonString.isNotEmpty) {
-          debugPrint("=============> Firebase Fetched: $jsonString");
+      // Always read currently active value
+      final String jsonString = remoteConfig.getString(_cacheKey);
 
-          // Save to local cache
-          await _box.write(_cacheKey, jsonString);
-
-          // Parse and update
-          final m = Map<String, dynamic>.from(jsonDecode(jsonString) as Map);
-          _config = AppConfig.fromJson(m);
-        } else {
-          debugPrint("=============> Firebase returned EMPTY string for key: $_cacheKey");
-        }
+      if (jsonString.isEmpty) {
+        debugPrint('Firebase configuration is empty');
+        return;
       }
-    } catch (e) {
-      debugPrint("=============> Remote Config Error: $e");
+
+      final Map<String, dynamic> json = Map<String, dynamic>.from(
+        jsonDecode(jsonString) as Map,
+      );
+
+      // Update application configuration
+      _config = AppConfig.fromJson(json);
+
+      // Save configuration locally
+      await _box.write(_cacheKey, jsonString);
+
+      debugPrint('Firebase configuration loaded');
+      debugPrint(
+        'Marketing enabled: ${_config.apiData.isMarketing}',
+      );
+
+      debugPrint(
+        'Facebook App ID available: ${_config.apiData.fbId.isNotEmpty}',
+      );
+    } catch (e, stackTrace) {
+      debugPrint('Firebase Remote Config error: $e');
+      debugPrint('$stackTrace');
+
+      // Continue using cached configuration if available
+    }
+  }
+
+  // ------------------------------------------
+  // INITIALIZE FACEBOOK SDK
+  // ------------------------------------------
+
+  Future<void> initializeFacebook() async {
+    if (_facebookInitialized) return;
+
+    try {
+      final ApiData api = _config.apiData;
+
+      // Check marketing enabled
+      // if (!api.isMarketing) {
+      //   debugPrint('Facebook marketing disabled');
+      //   return;
+      // }
+
+      // Read Firebase credentials
+      final String appId = api.fbId.trim();
+      final String clientToken = api.fbToken.trim();
+
+      if (appId.isEmpty || clientToken.isEmpty) {
+        debugPrint('Facebook App ID or Client Token missing');
+        return;
+      }
+
+      if (defaultTargetPlatform != TargetPlatform.android) {
+        debugPrint('This native implementation is Android only');
+        return;
+      }
+
+      debugPrint('Sending Facebook credentials to Android');
+
+      // STEP 1: Send credentials to Kotlin
+      final bool? nativeResult = await _facebookChannel.invokeMethod<bool>(
+        'setFacebookCredentials',
+        {
+          'appId': appId,
+          'clientToken': clientToken,
+        },
+      );
+
+      if (nativeResult != true) {
+        throw Exception(
+          'Android Facebook native configuration failed',
+        );
+      }
+
+      debugPrint('Native Facebook configuration successful');
+
+      // STEP 2: Complete Facebook SDK initialization
+      await _facebookEvents.initializeSdk();
+
+      debugPrint('Facebook SDK initialized successfully');
+
+      // STEP 3: Log custom event
+      await _facebookEvents.logEvent(
+        name: 'app_opened',
+        parameters: {
+          'Time': DateTime.now().toString(),
+          'platform': Platform.isAndroid ? 'Android': Platform.isIOS ? 'Ios' : 'Other',
+          'source': 'firebase_remote_config',
+        },
+      );
+
+      _facebookInitialized = true;
+
+      debugPrint('Facebook app_opened event logged');
+    } on PlatformException catch (e) {
+      debugPrint(
+        'Facebook PlatformException: ${e.code} ${e.message}',
+      );
+    } catch (e, stackTrace) {
+      debugPrint('Facebook initialization error: $e');
+      debugPrint('$stackTrace');
     }
   }
 }

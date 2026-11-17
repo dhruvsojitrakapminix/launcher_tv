@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="facebook_app_id">4462491624080297</string>
+    <string name="facebook_client_token">7aa144218fcbafbd6f8317c87eb491bd</string>
+    <string name="fb_login_protocol_scheme">fb4462491624080297</string>
+    <string name="app_name">Dhruv App</string>
+</resources>

@@ -43,7 +43,7 @@ class _HomeLauncherViewState extends State<HomeLauncherView> {
 
     ever(c.apps, (List<Application> list) {
       if (list.isNotEmpty && _pinned.isEmpty) {
-        _pinned.assignAll(list.take(8).toList());
+        _pinned.assignAll(list.take(25).toList());
       }
     });
 
@@ -52,7 +52,7 @@ class _HomeLauncherViewState extends State<HomeLauncherView> {
 
   Future<void> _bootstrap() async {
     // 1. Check the JSON config for marketing mode
-    final isMarketing = AppConfigStore.instance.appConfig.apiData.isMarketing == false;
+    final isMarketing = AppConfigStore.instance.appConfig.apiData.isMarketing;
     debugPrint('🏠 isMarketing mode = $isMarketing');
 
     if (isMarketing) {
@@ -91,7 +91,7 @@ class _HomeLauncherViewState extends State<HomeLauncherView> {
     final box = GetStorage();
     final done = box.read<bool>('onboarding_done') ?? false;
     debugPrint('🏠 is intro is done $done');
-    return done ? Routes.OB_MOODS : Routes.OB_NAME_AGE;
+    return done ? Routes.HOME : Routes.OB_NAME_AGE;
   }
 
   @override
@@ -231,12 +231,12 @@ class _HomeLauncherViewState extends State<HomeLauncherView> {
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4,
+                    crossAxisCount: 5,
                     crossAxisSpacing: S.md,
                     mainAxisSpacing: S.lg,
                     childAspectRatio: 0.75,
                   ),
-                  itemCount: _pinned.length,
+                  itemCount: _pinned.length > 20 ? 20 : _pinned.length,
                   itemBuilder: (_, i) {
                     final app = _pinned[i];
                     return LauncherAppIcon(
@@ -251,7 +251,7 @@ class _HomeLauncherViewState extends State<HomeLauncherView> {
 
               // Bottom dock
               Obx(() {
-                if (_pinned.length < 4) {
+                if (_pinned.length < 20) {
                   return const SizedBox(height: 90);
                 }
                 return Container(
@@ -268,9 +268,9 @@ class _HomeLauncherViewState extends State<HomeLauncherView> {
                     ),
                   ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: _pinned
-                        .take(4)
+                        .sublist(20)
                         .map(
                           (app) => GestureDetector(
                             onTap: () => c.openApp(app),

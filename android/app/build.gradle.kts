@@ -73,3 +73,7 @@ kotlin {
 flutter {
     source = "../.."
 }
+
+dependencies {
+    implementation("com.facebook.android:facebook-core:18.2.3")
+}

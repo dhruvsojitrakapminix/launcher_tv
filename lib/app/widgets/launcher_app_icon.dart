@@ -21,10 +21,10 @@ class LauncherAppIcon extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(
-            width: 56.r,
-            height: 56.r,
+            width: 50.r,
+            height: 50.r,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(R.md),
+              borderRadius: BorderRadius.circular(R.pill),
               child: app is ApplicationWithIcon
                   ? Image.memory(
                 // ✅ Explicit cast so the compiler knows `icon` exists
@@ -35,7 +35,7 @@ class LauncherAppIcon extends StatelessWidget {
                   : Icon(
                 Icons.android,
                 color: AppColors.textHint,
-                size: 28.sp,
+                size: 24.sp,
               ),
             ),
           ),
