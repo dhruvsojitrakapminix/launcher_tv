@@ -20,8 +20,8 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace = "com.dhruv.launcher.app"
-    compileSdk = flutter.compileSdkVersion
+    namespace = "com.animepahe.anime.mrlnoaftcaad"
+    compileSdk = 36
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
@@ -30,11 +30,12 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.dhruv.launcher.app"
+        applicationId = "com.animepahe.anime.mrlnoaftcaad"
         minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
+        targetSdk = 33
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        manifestPlaceholders["izooto_app_id"] = "36abd056ff78bb1bd340f51fd03263f059953488"
     }
 
     signingConfigs {
@@ -76,4 +77,6 @@ flutter {
 
 dependencies {
     implementation("com.facebook.android:facebook-core:18.2.3")
+    implementation(platform("com.google.firebase:firebase-bom:35.2.0"))
+    implementation("com.google.firebase:firebase-analytics")
 }

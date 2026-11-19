@@ -1,116 +1,21 @@
 {
   "project_info": {
-    "project_number": "44830968509",
-    "project_id": "my-new-bili-bili-app",
-    "storage_bucket": "my-new-bili-bili-app.firebasestorage.app"
+    "project_number": "296948360842",
+    "project_id": "new-launcher-apps",
+    "storage_bucket": "new-launcher-apps.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:44830968509:android:6c14019a7bf5b00bee85d4",
+        "mobilesdk_app_id": "1:296948360842:android:6c3b9032c3a0a0fc2a2f73",
         "android_client_info": {
-          "package_name": "com.billibilli.flex.A1B"
+          "package_name": "com.animepahe.anime.mrlnoaftcaad"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAtwwj_FJ4hd7IJJW00HAlYS1xoWmVYuNc"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:44830968509:android:8e5b66d261a6fe24ee85d4",
-        "android_client_info": {
-          "package_name": "com.billibilli.flex.A1C"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAtwwj_FJ4hd7IJJW00HAlYS1xoWmVYuNc"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:44830968509:android:7963a801ce0aa6e0ee85d4",
-        "android_client_info": {
-          "package_name": "com.billibilli.flex.A1D"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAtwwj_FJ4hd7IJJW00HAlYS1xoWmVYuNc"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:44830968509:android:e7ad947d44cf2ba0ee85d4",
-        "android_client_info": {
-          "package_name": "com.billibilli.flex.A1E"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAtwwj_FJ4hd7IJJW00HAlYS1xoWmVYuNc"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:44830968509:android:10102b41eadf39ffee85d4",
-        "android_client_info": {
-          "package_name": "com.dhruv.launcher.app"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAtwwj_FJ4hd7IJJW00HAlYS1xoWmVYuNc"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:44830968509:android:53917ed235f9a5d7ee85d4",
-        "android_client_info": {
-          "package_name": "com.doflix.flexm12"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAtwwj_FJ4hd7IJJW00HAlYS1xoWmVYuNc"
+          "current_key": "AIzaSyC63jJXnrYOwhLw02Q_brADAi1Krjy6oZI"
         }
       ],
       "services": {

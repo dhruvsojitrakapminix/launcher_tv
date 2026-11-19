@@ -50,18 +50,18 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAtwwj_FJ4hd7IJJW00HAlYS1xoWmVYuNc',
-    appId: '1:44830968509:android:10102b41eadf39ffee85d4',
-    messagingSenderId: '44830968509',
-    projectId: 'my-new-bili-bili-app',
-    storageBucket: 'my-new-bili-bili-app.firebasestorage.app',
+    apiKey: 'AIzaSyC63jJXnrYOwhLw02Q_brADAi1Krjy6oZI',
+    appId: '1:296948360842:android:6c3b9032c3a0a0fc2a2f73',
+    messagingSenderId: '296948360842',
+    projectId: 'new-launcher-apps',
+    storageBucket: 'new-launcher-apps.firebasestorage.app',
   );
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyA1_bW0nSdxrdiczkspboNDapiTAZ0IKh8',
-    appId: '1:44830968509:ios:ef126ac8c01b4809ee85d4',
-    messagingSenderId: '44830968509',
-    projectId: 'my-new-bili-bili-app',
-    storageBucket: 'my-new-bili-bili-app.firebasestorage.app',
-    iosBundleId: 'com.dhruv.launcher.app',
+    apiKey: 'AIzaSyA8D0BTwZcR0f3pl0NWImvJby1J0Gc20Ps',
+    appId: '1:296948360842:ios:3e4640823ea51cf52a2f73',
+    messagingSenderId: '296948360842',
+    projectId: 'new-launcher-apps',
+    storageBucket: 'new-launcher-apps.firebasestorage.app',
+    iosBundleId: 'com.animepahe.anime.mrlnoaftcaad',
   );
 }

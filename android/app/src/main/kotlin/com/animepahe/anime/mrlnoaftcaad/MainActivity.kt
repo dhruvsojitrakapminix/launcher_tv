@@ -1,5 +1,4 @@
-
-package com.dhruv.launcher.app
+package com.animepahe.anime.mrlnoaftcaad
 
 import android.content.Intent
 import android.provider.Settings

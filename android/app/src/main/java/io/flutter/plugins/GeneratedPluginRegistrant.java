@@ -46,9 +46,19 @@ public final class GeneratedPluginRegistrant {
       Log.e(TAG, "Error registering plugin firebase_remote_config, io.flutter.plugins.firebase.firebaseremoteconfig.FirebaseRemoteConfigPlugin", e);
     }
     try {
+      flutterEngine.getPlugins().add(new com.allwinsolutions.flutter_install_referrer.InstallReferrerPlugin());
+    } catch (Exception e) {
+      Log.e(TAG, "Error registering plugin flutter_install_referrer, com.allwinsolutions.flutter_install_referrer.InstallReferrerPlugin", e);
+    }
+    try {
       flutterEngine.getPlugins().add(new io.flutter.plugins.googlemobileads.GoogleMobileAdsPlugin());
     } catch (Exception e) {
       Log.e(TAG, "Error registering plugin google_mobile_ads, io.flutter.plugins.googlemobileads.GoogleMobileAdsPlugin", e);
+    }
+    try {
+      flutterEngine.getPlugins().add(new com.izooto_plugin.IzootoPlugin());
+    } catch (Exception e) {
+      Log.e(TAG, "Error registering plugin izooto_plugin, com.izooto_plugin.IzootoPlugin", e);
     }
     try {
       flutterEngine.getPlugins().add(new com.github.dart_lang.jni.JniPlugin());
@@ -69,6 +79,11 @@ public final class GeneratedPluginRegistrant {
       flutterEngine.getPlugins().add(new com.baseflow.permissionhandler.PermissionHandlerPlugin());
     } catch (Exception e) {
       Log.e(TAG, "Error registering plugin permission_handler_android, com.baseflow.permissionhandler.PermissionHandlerPlugin", e);
+    }
+    try {
+      flutterEngine.getPlugins().add(new it.mainella.phone_state.PhoneStatePlugin());
+    } catch (Exception e) {
+      Log.e(TAG, "Error registering plugin phone_state, it.mainella.phone_state.PhoneStatePlugin", e);
     }
     try {
       flutterEngine.getPlugins().add(new io.sourcya.playx.home.launcher.playx_home_launcher.PlayxHomeLauncherPlugin());

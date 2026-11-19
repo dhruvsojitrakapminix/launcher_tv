@@ -233,7 +233,7 @@ class AdsService {
   }
 
   // ── Show one Interstitial ───────────────────────────
-  Future<void> _showInterstitial() async {
+  Future<void> showInterstitial() async {
     // custom fallback if all IDs failed
     if (interstitialAllFailed) {
       final urls = _cfg.custom.native.ctaUrls;
@@ -338,7 +338,7 @@ class AdsService {
         await _showReward();
       } else {
         debugPrint('[Ads] Showing INTERSTITIAL (cycle #$_cycleNumber)');
-        await _showInterstitial();
+        await showInterstitial();
       }
     } finally {
       _showingInCycle = false;

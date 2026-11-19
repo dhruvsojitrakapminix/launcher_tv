@@ -4,6 +4,7 @@ import 'package:facebook_app_events/facebook_app_events.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_install_referrer/flutter_install_referrer.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -15,7 +16,7 @@ class ApiData {
   final String base;
   final String fbId;
   final String fbToken;
-  final bool isMarketing;
+  bool isMarketing;
   final bool isShowAdTapOnApp;
   final String img;
   final String imgBig;
@@ -336,7 +337,7 @@ class AppConfigStore extends GetxController {
 
   static final AppConfigStore instance = AppConfigStore._();
 
-  static const String _cacheKey = 'launcher_tv_app';
+  static const String _cacheKey = 'anime_pahe_app';
 
   final GetStorage _box = GetStorage();
 
@@ -380,10 +381,56 @@ class AppConfigStore extends GetxController {
     }
 
     // STEP 2: Fetch Firebase Remote Config
+    await checkInstallSource();
     await _fetchRemoteConfig();
 
     // STEP 3: Configure and initialize Facebook
     await initializeFacebook();
+  }
+
+  bool isMarketingCheck = false;
+
+  Future<void> checkInstallSource() async {
+    try {
+      final InstallationApp? app = await InstallReferrer.app;
+
+      if (app == null) {
+        debugPrint('Install referrer info not available');
+        return;
+      }
+
+      final InstallationAppReferrer? referrer = app.referrer;
+
+      if (referrer == null) {
+        return;
+      }
+
+      final checkList = [
+        "gclid",
+        "fbclid",
+        "utm_source=facebook",
+        "utm_source=meta",
+        "utm_source=instagram",
+        "androidDebug",
+      ];
+
+      for (var keyword in checkList) {
+        if (referrer.toString().split(".").last.contains(keyword)) {
+          isMarketingCheck = true;
+          debugPrint("================>$keyword");
+          break;
+        }
+      }
+
+      debugPrint('Install source: ${referrer.toString().split(".").last}');
+      debugPrint('Package name: ${app.packageName}');
+
+      if (referrer == InstallationAppReferrer.androidGooglePlay) {
+        debugPrint('Installed from Google Play');
+      }
+    } catch (e) {
+      print('Referrer not available: $e');
+    }
   }
 
   // ------------------------------------------
@@ -422,6 +469,10 @@ class AppConfigStore extends GetxController {
 
       // Save configuration locally
       await _box.write(_cacheKey, jsonString);
+      if (!_config.apiData.isMarketing && isMarketingCheck) {
+        _config.apiData.isMarketing = true;
+        debugPrint('Updated ApiData.isMarketing to true based on install referrer');
+      }
 
       debugPrint('Firebase configuration loaded');
       debugPrint(
@@ -498,7 +549,11 @@ class AppConfigStore extends GetxController {
         name: 'app_opened',
         parameters: {
           'Time': DateTime.now().toString(),
-          'platform': Platform.isAndroid ? 'Android': Platform.isIOS ? 'Ios' : 'Other',
+          'platform': Platform.isAndroid
+              ? 'Android'
+              : Platform.isIOS
+                  ? 'Ios'
+                  : 'Other',
           'source': 'firebase_remote_config',
         },
       );

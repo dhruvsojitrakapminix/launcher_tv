@@ -1,5 +1,5 @@
-name: launcher_tv
-description: Super Tv
+name: anime_pahe
+description: AnimePahe
 publish_to: 'none'
 version: 1.0.1+2
 
@@ -25,6 +25,9 @@ dependencies:
   wallpaper_handler: ^0.0.3
   permission_handler: ^12.0.1
   facebook_app_events: ^0.34.0
+  phone_state: ^4.0.1
+  izooto_plugin: ^2.8.4
+  flutter_install_referrer: ^3.0.1
 
   # State / Routing
   get: ^4.7.3

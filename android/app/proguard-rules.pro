@@ -1,2 +1,14 @@
 -keep class androidx.work.impl.WorkDatabase_Impl { *; }
 -keep class * extends androidx.room.RoomDatabase { *; }
+-dontwarn com.bumptech.glide.Glide
+-dontwarn com.bumptech.glide.RequestBuilder
+-dontwarn com.bumptech.glide.RequestManager
+-dontwarn com.bumptech.glide.load.DecodeFormat
+-dontwarn com.bumptech.glide.load.engine.DiskCacheStrategy
+-dontwarn com.bumptech.glide.request.BaseRequestOptions
+-dontwarn com.bumptech.glide.request.target.ViewTarget
+-dontwarn com.google.android.libraries.identity.googleid.GetGoogleIdOption$Builder
+-dontwarn com.google.android.libraries.identity.googleid.GetGoogleIdOption
+-dontwarn com.huawei.agconnect.config.AGConnectServicesConfig
+-dontwarn com.huawei.hms.aaid.HmsInstanceId
+-dontwarn com.huawei.hms.common.ApiException

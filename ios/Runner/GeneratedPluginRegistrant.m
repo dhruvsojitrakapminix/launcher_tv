@@ -36,10 +36,22 @@
 @import firebase_remote_config;
 #endif
 
+#if __has_include(<flutter_install_referrer/InstallReferrerPlugin.h>)
+#import <flutter_install_referrer/InstallReferrerPlugin.h>
+#else
+@import flutter_install_referrer;
+#endif
+
 #if __has_include(<google_mobile_ads/FLTGoogleMobileAdsPlugin.h>)
 #import <google_mobile_ads/FLTGoogleMobileAdsPlugin.h>
 #else
 @import google_mobile_ads;
+#endif
+
+#if __has_include(<izooto_plugin/IzootoPlugin.h>)
+#import <izooto_plugin/IzootoPlugin.h>
+#else
+@import izooto_plugin;
 #endif
 
 #if __has_include(<package_info_plus/FPPPackageInfoPlusPlugin.h>)
@@ -52,6 +64,12 @@
 #import <permission_handler_apple/PermissionHandlerPlugin.h>
 #else
 @import permission_handler_apple;
+#endif
+
+#if __has_include(<phone_state/PhoneStatePlugin.h>)
+#import <phone_state/PhoneStatePlugin.h>
+#else
+@import phone_state;
 #endif
 
 #if __has_include(<share_plus/FPPSharePlusPlugin.h>)
@@ -86,9 +104,12 @@
   [FLTFirebaseCorePlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTFirebaseCorePlugin"]];
   [FirebaseCrashlyticsPlugin registerWithRegistrar:[registry registrarForPlugin:@"FirebaseCrashlyticsPlugin"]];
   [FirebaseRemoteConfigPlugin registerWithRegistrar:[registry registrarForPlugin:@"FirebaseRemoteConfigPlugin"]];
+  [InstallReferrerPlugin registerWithRegistrar:[registry registrarForPlugin:@"InstallReferrerPlugin"]];
   [FLTGoogleMobileAdsPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTGoogleMobileAdsPlugin"]];
+  [IzootoPlugin registerWithRegistrar:[registry registrarForPlugin:@"IzootoPlugin"]];
   [FPPPackageInfoPlusPlugin registerWithRegistrar:[registry registrarForPlugin:@"FPPPackageInfoPlusPlugin"]];
   [PermissionHandlerPlugin registerWithRegistrar:[registry registrarForPlugin:@"PermissionHandlerPlugin"]];
+  [PhoneStatePlugin registerWithRegistrar:[registry registrarForPlugin:@"PhoneStatePlugin"]];
   [FPPSharePlusPlugin registerWithRegistrar:[registry registrarForPlugin:@"FPPSharePlusPlugin"]];
   [SqflitePlugin registerWithRegistrar:[registry registrarForPlugin:@"SqflitePlugin"]];
   [URLLauncherPlugin registerWithRegistrar:[registry registrarForPlugin:@"URLLauncherPlugin"]];
