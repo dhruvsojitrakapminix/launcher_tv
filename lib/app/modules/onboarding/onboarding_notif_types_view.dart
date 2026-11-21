@@ -79,14 +79,16 @@ class OnboardingNotifTypesView extends StatelessWidget {
               ),
               SizedBox(height: 28.h),
               Expanded(
-                child: Obx(() {
-                  return ListView.separated(
-                    itemCount: _types.length,
-                    separatorBuilder: (_, __) => SizedBox(height: 10.h),
-                    itemBuilder: (_, i) {
-                      final t = _types[i];
-                      final id = t['id'] as String;
+                child: ListView.separated(
+                  itemCount: _types.length,
+                  separatorBuilder: (_, __) => SizedBox(height: 10.h),
+                  itemBuilder: (_, i) {
+                    final t = _types[i];
+                    final id = t['id'] as String;
+
+                    return Obx(() {
                       final isSel = c.notifTypes.contains(id);
+
                       return GestureDetector(
                         onTap: () => c.toggleNotifType(id),
                         child: AnimatedContainer(
@@ -116,8 +118,7 @@ class OnboardingNotifTypesView extends StatelessWidget {
                               SizedBox(width: S.md),
                               Expanded(
                                 child: Column(
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       t['name'] as String,
@@ -134,22 +135,21 @@ class OnboardingNotifTypesView extends StatelessWidget {
                                     Text(
                                       t['desc'] as String,
                                       style: T.small.copyWith(
-                                          fontSize: 12.sp),
+                                        fontSize: 12.sp,
+                                      ),
                                     ),
                                   ],
                                 ),
                               ),
                               AnimatedContainer(
-                                duration:
-                                const Duration(milliseconds: 180),
+                                duration: const Duration(milliseconds: 180),
                                 width: 22.r,
                                 height: 22.r,
                                 decoration: BoxDecoration(
                                   color: isSel
                                       ? AppColors.primary
                                       : Colors.transparent,
-                                  borderRadius:
-                                  BorderRadius.circular(6.r),
+                                  borderRadius: BorderRadius.circular(6.r),
                                   border: Border.all(
                                     color: isSel
                                         ? AppColors.primary
@@ -169,13 +169,13 @@ class OnboardingNotifTypesView extends StatelessWidget {
                           ),
                         ),
                       );
-                    },
-                  );
-                }),
+                    });
+                  },
+                ),
               ),
               SizedBox(height: 16.h),
               Obx(
-                    () => PillButton(
+                () => PillButton(
                   label: 'CONTINUE',
                   enabled: c.notifTypes.isNotEmpty,
                   onTap: () => Get.toNamed(Routes.OB_MATURITY),

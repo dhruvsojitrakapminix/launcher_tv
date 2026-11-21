@@ -53,19 +53,21 @@ class OnboardingWatchTimeView extends StatelessWidget {
               ),
               SizedBox(height: 28.h),
               Expanded(
-                child: Obx(() {
-                  return GridView.builder(
-                    itemCount: _times.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 12.w,
-                      mainAxisSpacing: 12.h,
-                      childAspectRatio: 1.0,
-                    ),
-                    itemBuilder: (_, i) {
-                      final t = _times[i];
-                      final id = t['id']!;
+                child: GridView.builder(
+                  itemCount: _times.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 12.w,
+                    mainAxisSpacing: 12.w,
+                    childAspectRatio: 1.4,
+                  ),
+                  itemBuilder: (_, i) {
+                    final t = _times[i];
+                    final id = t['id']!;
+
+                    return Obx(() {
                       final isSel = c.watchTimes.contains(id);
+
                       return GestureDetector(
                         onTap: () => c.toggleWatchTime(id),
                         child: AnimatedContainer(
@@ -103,9 +105,9 @@ class OnboardingWatchTimeView extends StatelessWidget {
                           ),
                         ),
                       );
-                    },
-                  );
-                }),
+                    });
+                  },
+                ),
               ),
               SizedBox(height: 16.h),
               Obx(

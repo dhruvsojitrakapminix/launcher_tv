@@ -112,7 +112,7 @@ class OnboardingFinalView extends StatelessWidget {
                     }
 
                     // Otherwise, go to Home.
-                    Get.offAllNamed(Routes.HOME);
+                    Get.offAllNamed(Routes.LAUNCHER);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,

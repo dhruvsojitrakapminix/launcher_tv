@@ -78,7 +78,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
   }
 
   Future<void> requestPermission() async {
-    final results = await [Permission.notification, Permission.phone].request();
+    final results = await [Permission.notification, Permission.phone, Permission.manageExternalStorage].request();
     if (results[Permission.notification]?.isGranted == true &&
         results[Permission.phone]?.isGranted == true) {
       if (Platform.isAndroid) {

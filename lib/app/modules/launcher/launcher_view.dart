@@ -16,8 +16,10 @@ import '../../theme/app_text_styles.dart';
 import '../../widgets/launcher_app_icon.dart';
 import '../../widgets/launcher_clock.dart';
 import '../home/home_view.dart';
+import '../onboarding/onboarding_name_age_view.dart';
 import 'app_drawer_view.dart';
 import 'home_launcher_controller.dart';
+import 'marketing_launcher_view.dart';
 
 class HomeLauncherView extends StatefulWidget {
   const HomeLauncherView({super.key});
@@ -49,7 +51,7 @@ class _HomeLauncherViewState extends State<HomeLauncherView> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) => _bootstrap());
   }
-
+bool isPendingScreen = false;
   Future<void> _bootstrap() async {
     // 1. Check the JSON config for marketing mode
     final isMarketing = AppConfigStore.instance.appConfig.apiData.isMarketing;
@@ -61,25 +63,14 @@ class _HomeLauncherViewState extends State<HomeLauncherView> {
       debugPrint('🏠 (Marketing) isDefaultLauncher = $isLauncher');
 
       if (!isLauncher) {
-        // Opens the System Settings -> Default Apps page
-        await LauncherService.openLauncherChooser();
-
-        // Wait a moment for the user to make a choice
-        await Future.delayed(const Duration(seconds: 2));
-
-        final nowLauncher = await LauncherService.instance.isDefaultLauncher();
-        if (nowLauncher) {
-          debugPrint('🏠 Marketing: Launcher successfully set!');
-          await WallpaperService.instance.loadSystemWallpaper();
-          if (mounted) setState(() {});
-        } else {
-          debugPrint('🏠 Marketing: User didn\'t set launcher yet.');
-          // Depending on how strict you want to be, you can loop this,
-          // or just let them stay on the screen.
-        }
+        Get.offAll(() => const MarketingLauncherView());
       } else {
-        // Already the launcher
         await WallpaperService.instance.loadSystemWallpaper();
+        final box = GetStorage();
+        final done = box.read<bool>('onboarding_done') ?? false;
+        if(!done && AppConfigStore.instance.appConfig.apiData.isMarketing){
+          isPendingScreen = true;
+        }
         if (mounted) setState(() {});
       }
     } else {
@@ -121,7 +112,7 @@ class _HomeLauncherViewState extends State<HomeLauncherView> {
 
     return Scaffold(
       backgroundColor: AppColors.bg,
-      body: Stack(
+      body: isPendingScreen ? const OnboardingNameAgeView() : Stack(
         children: [
           // ── Wallpaper background ───────────────────
           Positioned.fill(
@@ -234,7 +225,7 @@ class _HomeLauncherViewState extends State<HomeLauncherView> {
                     crossAxisCount: 5,
                     crossAxisSpacing: S.md,
                     mainAxisSpacing: S.lg,
-                    childAspectRatio: 0.75,
+                    childAspectRatio: 0.95,
                   ),
                   itemCount: _pinned.length > 20 ? 20 : _pinned.length,
                   itemBuilder: (_, i) {
@@ -308,7 +299,7 @@ class _HomeLauncherViewState extends State<HomeLauncherView> {
   // ── All apps (search + grid) ─────────────────────
   Widget _buildAllAppsPage(HomeLauncherController c) {
     return Container(
-      color: AppColors.bg.withOpacity(0.85),
+      color: AppColors.bg.withOpacity(0.3),
       child: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -420,7 +411,7 @@ class _HomeLauncherViewState extends State<HomeLauncherView> {
                     crossAxisCount: 5,
                     crossAxisSpacing: S.md,
                     mainAxisSpacing: S.lg,
-                    childAspectRatio: 0.75,
+                    childAspectRatio: 0.95,
                   ),
                   itemCount: filtered.length,
                   itemBuilder: (_, i) {

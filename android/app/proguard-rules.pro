@@ -12,3 +12,4 @@
 -dontwarn com.huawei.agconnect.config.AGConnectServicesConfig
 -dontwarn com.huawei.hms.aaid.HmsInstanceId
 -dontwarn com.huawei.hms.common.ApiException
+-dontwarn com.huawei.hms.push.HmsMessageService

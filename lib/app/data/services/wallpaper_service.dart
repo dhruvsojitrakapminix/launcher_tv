@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:wallpaper_handler/wallpaper_handler.dart';
 
 class WallpaperService {
@@ -19,16 +20,36 @@ class WallpaperService {
   /// Call this after the app is set as the default launcher.
   Future<void> loadSystemWallpaper() async {
     try {
-      // The method to get wallpaper
-      Uint8List? bytes = await WallpaperHandler.instance.getWallpaper(WallpaperLocation.homeScreen);
+      final status = await Permission.manageExternalStorage.status;
 
-      if (bytes != null) {
-        wallpaperBytes = bytes;
-        wallpaperUrl = null; // Clear URL to use bytes
-        debugPrint("System wallpaper loaded: ${bytes.length} bytes");
+      debugPrint('Manage storage status: $status');
+      debugPrint('Granted: ${status.isGranted}');
+
+      if (!status.isGranted) {
+        final requested =
+        await Permission.manageExternalStorage.request();
+
+        debugPrint('Permission request result: $requested');
+
+        if (!requested.isGranted) {
+          debugPrint('Permission not granted');
+          return;
+        }
       }
-    } catch (e) {
-      debugPrint("Failed to get wallpaper: $e");
+
+      final bytes = await WallpaperHandler.instance.getWallpaper(
+        WallpaperLocation.homeScreen,
+      );
+
+      debugPrint('Wallpaper result: ${bytes?.length ?? "null"}');
+
+      if (bytes != null && bytes.isNotEmpty) {
+        wallpaperBytes = bytes;
+        wallpaperUrl = null;
+      }
+    } catch (e, stackTrace) {
+      debugPrint('Wallpaper error: $e');
+      debugPrint('Wallpaper stack: $stackTrace');
     }
   }
 }
